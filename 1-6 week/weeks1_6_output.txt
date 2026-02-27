@@ -1,0 +1,38 @@
+LATTICE POLYMER MONTE CARLO (Weeks 1–6)
+Run timestamp: 2026-02-26T20:36:12
+------------------------------------------------------------------------
+Polymer length n = 20
+HP sequence     = HPPHPPHPHPPHPPHPHPPH
+
+WEEK 1 DEMO: Straight chain summary
+{'n_beads': 6, 'coords': [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0)], 'bonds': [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)], 'self_avoiding': True, 'connected': True}
+
+WEEK 2/3 DEMO: One SAW + observables
+Valid SAW? True
+R  = 3.605551
+Rg = 2.382226
+HP energy E = -3.000000  (eps_HH = -1)
+
+WEEK 3 DEMO: Ensemble averages over many SAWs (growth sampling)
+n = 20   samples = 2000
+<R>  = 6.477513 ± 2.574712
+<Rg> = 2.703645 ± 0.497277
+
+WEEK 4–6: Metropolis MC with mixed moves (pivot/crankshaft/end)
+MC steps      = 20000
+Burn-in steps = 5000
+Sample every  = 50 steps
+
+Results (kB=1 units):
+T	<E>		Cv		<R>		<Rg>		acc_rate	n_samples
+0.60	-2.875000	4.420883	6.145571	2.693271	0.6351	112
+0.80	-1.976378	2.127573	6.464617	2.794546	0.7536	127
+1.00	-1.835938	1.152771	6.648463	2.852699	0.8164	128
+1.20	-1.491525	0.703222	6.873816	2.876995	0.8431	118
+1.50	-1.364964	0.531231	7.210301	2.958934	0.8948	137
+2.00	-1.316901	0.212569	7.776427	3.005640	0.9178	142
+
+NOTE:
+- Moves: pivot, crankshaft, end moves; invalid proposals are skipped.
+- HP energy: counts NON-bonded nearest-neighbor H-H contacts (each contributes -1).
+- Cv is estimated from fluctuations: Cv = (<E^2> - <E>^2) / T^2 (kB=1).
